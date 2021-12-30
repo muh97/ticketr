@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tickets</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<br>
+<div>
+    <button class="btn btn-inverse btn-lg p-l-30 p-r-30 m-l-10" onclick="location.href='{% url 'logout' %}'">logout</button>
+</div>
+<br>
+<div>
+    <button class="btn btn-inverse btn-lg p-l-30 p-r-30 m-l-10" onclick="location.href='{% url 'index' %}'">Back</button>
+</div>
+<br>
+<div>
+    <button class="btn btn-inverse btn-lg p-l-30 p-r-30 m-l-10" onclick="location.href='{% url 'response' %}'">Responses</button>
+</div>
+<br>
+<div class="dropdown">
+  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+    Sort by
+  </button>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="{% url 'remaining_ticket' %}">All</a>
+      {% for rev in comp %}
+    <a class="dropdown-item" href="{% url 'remaining_tickets' rev.id %}">{{rev.name}}</a>
+<!--    <a class="dropdown-item" href="#">Link 3</a>-->
+      {% endfor %}
+  </div>
+</div>
+<br>
+<div>
+    <h2> Tickets Table</h2>
+</div>
+<div>
+    <table border="1">
+  <tr>
+    <th>Priority No#</th>
+      <th>Ticket No#</th>
+      <th>Name</th>
+    <th>Company Name</th>
+    <th>Type</th>
+    <th>Title</th>
+      <th>Status</th>
+    <th>Message</th>
+      <th>Date</th>
+  </tr>
+        {% for rev in tic %}
+  <tr>
+    <td>{{rev.ticket.prior}}</td>
+      <td>{{rev.ticket.ticket_no}}</td>
+    <td>{{rev.ticket.user_name}}</td>
+    <td>{{rev.ticket.company}}</td>
+    <td>{{rev.ticket.type}}</td>
+    <td>{{rev.ticket.title}}</td>
+      <td>{{rev.reply}}</td>
+    <td>{{rev.ticket.description}}</td>
+      <td>{{rev.ticket.date}}</td>
+  </tr>
+        {% endfor %}
+</table>
+</div>
+<br>
+</body>
+</html>

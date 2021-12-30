@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<br>
+<div>
+    <button class="btn btn-inverse btn-lg p-l-30 p-r-30 m-l-10" onclick="location.href='{% url 'logout' %}'">logout</button>
+</div>
+<br>
+<div>
+    <button class="btn btn-inverse btn-lg p-l-30 p-r-30 m-l-10" onclick="location.href='{% url 'index' %}'">Back</button>
+</div>
+<br>
+<div>
+    <button class="btn btn-inverse btn-lg p-l-30 p-r-30 m-l-10" onclick="location.href='{% url 'show_ticket' %}'">All Tickets</button>
+</div>
+
+<br>
+<div>
+    <button class="btn btn-inverse btn-lg p-l-30 p-r-30 m-l-10" onclick="location.href='{% url 'remaining_ticket' %}'">Remaining Tickets</button>
+</div>
+<br>
+<div>
+    <form action="{% url 'response' %}" method = 'post'>
+        {% csrf_token %}
+        {{form1.as_p}}
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<br><br>
+<div>
+    <table border="3">
+  <tr>
+    <th>Priority No#</th>
+      <th>Ticket no#</th>
+    <th>Company Name</th>
+    <th>Type</th>
+    <th>Title</th>
+      <th>Status</th>
+      <th>Comment</th>
+      <th>  </th>
+  </tr>
+        {% for rev in response %}
+  <tr>
+    <td>{{rev.ticket.prior}}</td>
+      <td>{{rev.ticket.ticket_no}}</td>
+    <td>{{rev.ticket.company}}</td>
+    <td>{{rev.ticket.type}}</td>
+    <td>{{rev.ticket.title}}</td>
+    <td>{{rev.reply}}</td>
+      <td>{{rev.comment}}</td>
+      <td><a href="{% url 'response_update' rev.id %}"> edit </a></td>
+  </tr>
+        {% endfor %}
+</table>
+</div>
+</body>
+</html>

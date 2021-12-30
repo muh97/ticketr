@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ticket</title>
+</head>
+<body>
+<br>
+<div>
+    <button class="btn btn-inverse btn-lg p-l-30 p-r-30 m-l-10" onclick="location.href='{% url 'logout' %}'">logout</button>
+</div>
+<br>
+Hello {{request.user.first_name}} {{request.user.last_name}}, good to see you back soon.
+<br>
+<div>
+    <button class="btn btn-inverse btn-lg p-l-30 p-r-30 m-l-10" onclick="location.href='{% url 'show_ticket' %}'">All Tickets</button>
+</div>
+<br>
+<div class="col-md-5">
+<div class="review-form">
+    <div class="form-group">
+<form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+<button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</div>
+
+</form>
+</div>
+</body>
+</html>
